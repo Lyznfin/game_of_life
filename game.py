@@ -1,6 +1,8 @@
 import random
-from colorama import Fore, Style
 import time
+import os
+
+from colorama import Fore, Style
 
 class Game:
     def __init__(self, height: int, width: int, /, *, state: list[list[int]] = None) -> None:
@@ -15,7 +17,7 @@ class Game:
         random_number = random.random()
         return 1 if random_number >= 0.8 else 0
 
-    def __initialize_random_state(self):
+    def __initialize_random_state(self) -> None:
         self.state = self.__dead_state()
         for i in range(self.HEIGHT):
             for j in range(self.WIDTH):
@@ -50,7 +52,7 @@ class Game:
             else:
                 return 0
 
-    def __next_board_state(self):
+    def __next_board_state(self) -> None:
         new_state = self.__dead_state()
         for i in range(self.HEIGHT):
             for j in range(self.WIDTH):
@@ -72,8 +74,9 @@ class Game:
         print("\n".join(lines))
         print(Style.RESET_ALL)
 
-    def start(self):
+    def start(self) -> None:
         while True:
             self.__render()
             self.__next_board_state()
-            time.sleep(0.3)
+            time.sleep(0.5)
+            os.system('cls')
