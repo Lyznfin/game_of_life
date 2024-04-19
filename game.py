@@ -3,22 +3,17 @@ from colorama import Fore, Style
 import time
 
 class Game:
-    def __init__(self, height: int, width: int, /) -> None:
+    def __init__(self, height: int, width: int, /, *, state: list[list[int]] = None) -> None:
         self.HEIGHT = height
         self.WIDTH = width
-        self.__initialize_random_state()
-        # self.state = [
-        #     [0, 0, 0, 0, 0, 0],
-        #     [0, 0, 0, 0, 0, 0],
-        #     [0, 0, 1, 1, 1, 0],
-        #     [0, 1, 1, 1, 0, 0],
-        #     [0, 0, 0, 0, 0, 0],
-        #     [0, 0, 0, 0, 0, 0]
-        # ]
+        if not state is None:
+            self.state = state
+        else:
+            self.__initialize_random_state()
 
     def __random_cell(self) -> int:
         random_number = random.random()
-        return 1 if random_number >= 0.9 else 0
+        return 1 if random_number >= 0.8 else 0
 
     def __initialize_random_state(self):
         self.state = self.__dead_state()
@@ -55,27 +50,15 @@ class Game:
             else:
                 return 0
 
-    def __next_board_state(self) -> bool:
+    def __next_board_state(self):
         new_state = self.__dead_state()
         for i in range(self.HEIGHT):
             for j in range(self.WIDTH):
                 new_cell_state = self.__next_cell_state(i, j)
                 new_state[i][j] = new_cell_state
-        if self.state == new_state:
-            return False
         self.state = new_state
-        return True
-
-    def start(self):
-        while True:
-            self.render()
-            state = self.__next_board_state()
-            if not state:
-                break
-            time.sleep(0.3)
-
         
-    def render(self) -> None:
+    def __render(self) -> None:
         display_as = {
             0: Fore.BLACK + u"\u2588",
             1: Fore.WHITE + u"\u2588"
@@ -88,3 +71,9 @@ class Game:
             lines.append(line)
         print("\n".join(lines))
         print(Style.RESET_ALL)
+
+    def start(self):
+        while True:
+            self.__render()
+            self.__next_board_state()
+            time.sleep(0.3)

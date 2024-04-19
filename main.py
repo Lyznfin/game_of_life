@@ -1,7 +1,7 @@
 from game import Game
 
 def main() -> None:
-    game = Game(25, 25)
+    game = Game(10, 10)
     game.start()
 
 if __name__ == "__main__":
