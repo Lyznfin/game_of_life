@@ -1,8 +1,7 @@
 from game import Game
 
 def main() -> None:
-    # game = Game(soup_path="soups/glider.txt")
-    game = Game(40, 40, zombie=True, moore=True)
+    game = Game(40, 80, state_mode="moore", cell_mode="brians")
     game.start()
 
 if __name__ == "__main__":
