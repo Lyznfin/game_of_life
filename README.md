@@ -3,7 +3,7 @@
 
 To get started, either fork or clone this repository
 ```
-git clone https://github.com/Lyznfin/project_uts_pbp
+git clone https://github.com/Lyznfin/game_of_life
 ```
 
 You can generate the initial state randomly by inputing 
