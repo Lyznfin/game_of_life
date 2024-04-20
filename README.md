@@ -1,4 +1,4 @@
-# Conway's Game of Life
+# [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 ![](https://github.com/Lyznfin/game_of_life/blob/master/Game_of_life_pulsar.gif)
 
 To get started, either fork or clone this repository
