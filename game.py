@@ -91,7 +91,7 @@ class Game:
             case 2:
                 return 0
             
-    def __brians_brain_cell_state(self, live_neighbors: int,row: int, column:int, /) -> int:
+    def __brians_brain_cell_state(self, live_neighbors: int, row: int, column:int, /) -> int:
         match self.state[row][column]:
             case 0:
                 if live_neighbors == 2:
